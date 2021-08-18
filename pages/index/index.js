@@ -3,7 +3,7 @@
  * @Author: xuelianYi
  * @Date: 2021-08-13 17:59:22
  * @LastEditors: xuelianYi
- * @LastEditTime: 2021-08-17 16:39:02
+ * @LastEditTime: 2021-08-18 14:37:26
  * @FilePath: \kaka_music\pages\index\index.js
  */
 
@@ -68,7 +68,6 @@ Page({
         topList: resultArr
       })
     }
-
 
   },
 
