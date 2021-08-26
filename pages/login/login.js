@@ -91,6 +91,14 @@ Page({
       wx.showToast({
         title: '登录成功',
       })
+
+      // 将用户信息存储至本地
+      wx.setStorageSync('userInfo', JSON.stringify(res.profile))
+
+      // 跳转至个人中心personal页面
+      wx.reLaunch({
+        url: '/pages/personal/personal'
+      })
     } else if (res.code === 400) {
       wx.showToast({
         title: '该手机号尚未注册',

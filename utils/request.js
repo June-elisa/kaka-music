@@ -3,7 +3,7 @@
  * @Author: xuelianYi
  * @Date: 2021-08-16 16:25:51
  * @LastEditors: xuelianYi
- * @LastEditTime: 2021-08-18 12:04:47
+ * @LastEditTime: 2021-08-26 17:23:16
  * @FilePath: \kaka_music\utils\request.js
  */
 
@@ -34,7 +34,7 @@ export default (url, data = {}, method = 'GET') => {
     return new Promise((resolve, reject) => {
         // 1.new Promise 初始化promise实例的状态为pending
         wx.request({
-            url: config.mobileHost + url,
+            url: config.host + url,
             data,
             method,
             success: (res) => {

@@ -23,6 +23,12 @@
           "pathName": "pages/login/login",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "视频",
+          "pathName": "pages/video/video",
+          "query": "",
+          "scene": null
         }
       ]
     }
