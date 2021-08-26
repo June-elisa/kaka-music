@@ -1,9 +1,9 @@
 @font-face {
     font-family: "iconfont";
     /* Project id 2747148 */
-    src: url('//at.alicdn.com/t/font_2747148_m6uthqylso.woff2?t=1629085817482') format('woff2'),
-        url('//at.alicdn.com/t/font_2747148_m6uthqylso.woff?t=1629085817482') format('woff'),
-        url('//at.alicdn.com/t/font_2747148_m6uthqylso.ttf?t=1629085817482') format('truetype');
+    src: url('//at.alicdn.com/t/font_2747148_7cmi81l0ybj.woff2?t=1629277808120') format('woff2'),
+        url('//at.alicdn.com/t/font_2747148_7cmi81l0ybj.woff?t=1629277808120') format('woff'),
+        url('//at.alicdn.com/t/font_2747148_7cmi81l0ybj.ttf?t=1629277808120') format('truetype');
 }
 
 .iconfont {
@@ -12,6 +12,30 @@
     font-style: normal;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-geren:before {
+    content: "\e601";
+}
+
+.icon-personal:before {
+    content: "\e63f";
+}
+
+.icon-yifu:before {
+    content: "\e666";
+}
+
+.icon-haoyou:before {
+    content: "\e60d";
+}
+
+.icon-xiaoxi:before {
+    content: "\e63b";
+}
+
+.icon-xiaoxi1:before {
+    content: "\e612";
 }
 
 .icon-paihangbang:before {

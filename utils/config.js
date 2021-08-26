@@ -3,10 +3,10 @@
  * @Author: xuelianYi
  * @Date: 2021-08-16 17:17:30
  * @LastEditors: xuelianYi
- * @LastEditTime: 2021-08-18 12:06:21
+ * @LastEditTime: 2021-08-25 14:33:55
  * @FilePath: \kaka_music\utils\config.js
  */
 export default {
     host: 'http://localhost:3000',
-    mobileHost: 'https://da274289cb75.ngrok.io'
+    mobileHost: 'http://52cd-116-236-168-98.ngrok.io'
 }
