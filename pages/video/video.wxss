@@ -1,1 +1,49 @@
 /* pages/video/video.wxss */
+.videoContainer .header{
+    display: flex;
+    padding:10rpx;
+}
+
+
+.videoContainer .header image{
+    width: 60rpx;
+    height: 60rpx;
+
+}
+
+.videoContainer .header .search {
+    border:1rpx solid #eee;
+    flex:1;
+    margin:0 20rpx;
+    font-size: 26rpx;
+    text-align: center;
+    line-height: 60rpx;
+    color:#d43c33;
+}
+
+
+/* 导航区域 */
+.navScroll{
+    display: flex;
+    white-space: nowrap;
+    height: 72rpx;
+}
+.navScroll .navItem{
+    padding: 0 30rpx;
+    font-size: 28rpx;
+    height: 60rpx;
+    line-height: 60rpx;
+    /* box-sizing: border-box; */
+}
+
+.navItem .active{
+    border-bottom: 1rpx solid #d43c33;
+}
+
+/* 视频列表 */
+.videoItem{
+padding:0 3%
+}
+.videoItem video{
+
+}

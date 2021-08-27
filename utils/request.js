@@ -3,7 +3,7 @@
  * @Author: xuelianYi
  * @Date: 2021-08-16 16:25:51
  * @LastEditors: xuelianYi
- * @LastEditTime: 2021-08-26 17:23:16
+ * @LastEditTime: 2021-08-27 16:47:31
  * @FilePath: \kaka_music\utils\request.js
  */
 
@@ -37,8 +37,19 @@ export default (url, data = {}, method = 'GET') => {
             url: config.host + url,
             data,
             method,
+            header: {
+                cookie: wx.getStorageSync('cookies') ? wx.getStorageSync('cookies').find(item => item.indexOf('MUSIC_U') !== -1) : ''
+                // cookie: wx.getStorageSync('cookies')[1]
+            },
             success: (res) => {
-                // console.log('success!!', res);
+                if (data.isLogin) { // 登录请求
+                    // 将用户的cookie存入至本地
+                    wx.setStorage({
+                        key: 'cookies',
+                        data: res.cookies
+                    })
+                }
+                console.log(res);
                 resolve(res.data); // resolve修改promise的状态为成功状态 resolved
             },
             fail: (err) => {
