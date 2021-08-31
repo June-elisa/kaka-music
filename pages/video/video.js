@@ -148,19 +148,6 @@ Page({
     // console.log('发请求 || 获取最新列表');
   },
 
-  // 视频分享
-  videoShare(event) {
-    // console.log('event',
-    //   event);
-
-    let shareVideo = videoList.find(item => item.data.vid === event.currentTarget.id).data
-    // console.log('shareVideo', shareVideo);
-    this.setData({
-      shareVideo
-    })
-
-  },
-
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -210,15 +197,16 @@ Page({
     from,
     target
   }) {
-    console.log(this.data.shareVideo);
-    console.log(this.data.shareVideo.title);
-    console.log('target', target);
+    let {
+      videoList
+    } = this.data;
+    let shareVideo = videoList.find(item => item.data.vid === target.id).data
 
     if (from === 'button') {
       return {
-        title: '自定义转发内容',
+        title: shareVideo.title,
         page: '/pages/video/video',
-        imageUrl: '/static/images/nvsheng.jpg'
+        imageUrl: shareVideo.coverUrl
       }
     }
   }

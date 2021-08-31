@@ -3,7 +3,7 @@
  * @Author: xuelianYi
  * @Date: 2021-08-16 16:25:51
  * @LastEditors: xuelianYi
- * @LastEditTime: 2021-08-27 16:47:31
+ * @LastEditTime: 2021-08-31 10:26:59
  * @FilePath: \kaka_music\utils\request.js
  */
 
@@ -34,7 +34,7 @@ export default (url, data = {}, method = 'GET') => {
     return new Promise((resolve, reject) => {
         // 1.new Promise 初始化promise实例的状态为pending
         wx.request({
-            url: config.host + url,
+            url: config.mobileHost + url,
             data,
             method,
             header: {
@@ -49,7 +49,7 @@ export default (url, data = {}, method = 'GET') => {
                         data: res.cookies
                     })
                 }
-                console.log(res);
+                // console.log(res);
                 resolve(res.data); // resolve修改promise的状态为成功状态 resolved
             },
             fail: (err) => {
