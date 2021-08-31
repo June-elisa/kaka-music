@@ -3,7 +3,8 @@
     "pages/index/index",
     "pages/personal/personal",
     "pages/video/video",
-    "pages/login/login"
+    "pages/login/login",
+    "pages/recommendSong/recommendSong"
   ],
   "style": "v2",
   "sitemapLocation": "sitemap.json",

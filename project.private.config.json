@@ -29,6 +29,12 @@
           "pathName": "pages/video/video",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "推荐歌曲",
+          "pathName": "pages/recommendSong/recommendSong",
+          "query": "",
+          "scene": null
         }
       ]
     }
