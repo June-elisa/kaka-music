@@ -1,12 +1,5 @@
-/*
- * @Desc: 
- * @Author: xuelianYi
- * @Date: 2021-08-31 11:11:57
- * @LastEditors: xuelianYi
- * @LastEditTime: 2021-08-31 18:44:48
- * @FilePath: \kaka_music\pages\recommendSong\recommendSong.js
- */
-// pages/recommendSong/recommendSong.js
+import request from '../../utils/request'
+
 Page({
 
   /**
@@ -28,16 +21,15 @@ Page({
       wx.showToast({
         title: '请先登录',
         icon: 'none',
+        duration: 2000,
         success: () => {
           // 跳转至登录界面
           wx.reLaunch({
-            url: '/pages'
+            url: '/pages/login/login'
           })
         }
       })
     }
-
-
 
     // 更新日期的状态数据
     this.setData({
@@ -45,6 +37,17 @@ Page({
       month: new Date().getMonth() + 1
     })
 
+    this.getRecommendList()
+
+  },
+
+  // 获取推荐列表数据
+  async getRecommendList() {
+    let recommendListData = await request('/recommend/songs');
+    console.log(recommendListData);
+    this.setData({
+      recommendList: recommendListData.data.dailySongs
+    })
   },
 
   /**

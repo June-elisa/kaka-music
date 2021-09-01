@@ -20,6 +20,22 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    // 判断用户是否登录
+    let userInfo = wx.getStorageSync('userInfo');
+    if (!userInfo) {
+      wx.showToast({
+        title: '请先登录',
+        icon: 'none',
+        duration: 2000,
+        success: () => {
+          // 跳转至登录界面
+          wx.reLaunch({
+            url: '/pages/login/login'
+          })
+        }
+      })
+    }
+
     // 获取导航数据
     this.getvideoGroupListData()
 

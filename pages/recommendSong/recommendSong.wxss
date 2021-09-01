@@ -53,7 +53,7 @@
   display: flex;
   align-items: center;
   width: 100%;
-  margin: 15rpx 0;
+  margin: 0 0 40rpx;
 }
 
 .scrollItem image {
@@ -70,12 +70,18 @@
 
 }
 
-.scrollItem .musicInfo text {
-  line-height: 40rpx;
+.scrollItem .musicInfo .musicName{
+    font-size: 28rpx;
+}
+
+.scrollItem .musicInfo .author {
+  /* line-height: 40rpx; */
+  margin-top: 5rpx;
   font-size: 24rpx;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  color: rgb(129, 129, 129);
 }
 
 

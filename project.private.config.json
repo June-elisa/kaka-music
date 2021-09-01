@@ -35,6 +35,12 @@
           "pathName": "pages/recommendSong/recommendSong",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "歌曲详情页",
+          "pathName": "pages/songDetail/songDetail",
+          "query": "",
+          "scene": null
         }
       ]
     }

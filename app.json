@@ -4,7 +4,8 @@
     "pages/personal/personal",
     "pages/video/video",
     "pages/login/login",
-    "pages/recommendSong/recommendSong"
+    "pages/recommendSong/recommendSong",
+    "pages/songDetail/songDetail"
   ],
   "style": "v2",
   "sitemapLocation": "sitemap.json",
