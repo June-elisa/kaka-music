@@ -1,11 +1,10 @@
-// pages/songDetail/songDetail.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    isPlay: false, // 音乐是否在播放
   },
 
   /**
@@ -13,6 +12,13 @@ Page({
    */
   onLoad: function (options) {
 
+  },
+  // 点击播放/暂停的回调
+  handleMusicPlay() {
+    let isPlay = !this.data.isPlay;
+    this.setData({
+      isPlay
+    })
   },
 
   /**
