@@ -1,8 +1,40 @@
 /* pages/songDetail/songDetail.wxss */
+.box {
+  height: 100vh;
+  width: 100vw;
+  text-align: center;
+}
+
+.bg {
+  height: 160vh;
+  width: 160vw;
+  margin-left: -30vw;
+  margin-top: -30vh;
+  /* background: url('http://p4.music.126.net/KUUrg-bbybCdG_EwDSnNFA==/109951164176658680.jpg'); */
+  /* height: 600px; */
+  text-align: center;
+}
+
+
+.bg-blur {
+  float: left;
+  width: 150%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 150% 150%;
+  -webkit-filter: blur(55px);
+  -moz-filter: blur(55px);
+  -o-filter: blur(55px);
+  -ms-filter: blur(55px);
+  filter: blur(55px);
+}
+
+
 .songDetailContainer {
-  position: relative;
+  position: absolute;
   height: 100%;
-  background: linear-gradient(to left top, rgba(77, 76, 90, .6), rgba(48, 75, 103));
+  width: 100%;
+  background: rgba(0, 0, 0, .3);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -118,6 +150,7 @@
   flex-direction: column;
   align-items: center;
   margin-bottom: 20rpx;
+  color: rgba(255, 255, 255, .7);
 }
 
 .operation,
@@ -142,4 +175,40 @@
   font-size: 80rpx;
 }
 
+/* 进度条控制区域 */
+.progressControl {
+  /* position: absolute; */
+  bottom: 200rpx;
+  width: 640rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  display: flex;
+  align-items: center;
+}
 
+.barControl {
+  position: relative;
+  width: 440rpx;
+  height: 3rpx;
+  background: rgba(255, 255, 255, .6);
+  margin: 0 10rpx;
+  border-radius: 1rpx;
+}
+
+.currentTimeBar {
+  position: absolute;
+  left: 0;
+  top: -1rpx;
+  height: 4rpx;
+  background-color: white;
+}
+
+.audioCircle {
+  position: absolute;
+  right: -12rpx;
+  top: -4rpx;
+  width: 12rpx;
+  height: 12rpx;
+  border-radius: 50%;
+  background-color: #fff;
+}
