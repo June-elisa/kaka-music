@@ -5,7 +5,8 @@
     "pages/video/video",
     "pages/login/login",
     "pages/recommendSong/recommendSong",
-    "pages/songDetail/songDetail"
+    "pages/songDetail/songDetail",
+    "pages/search/search"
   ],
   "style": "v2",
   "sitemapLocation": "sitemap.json",
@@ -38,5 +39,7 @@
       }
     ]
   },
-  "requiredBackgroundModes":["audio"]
+  "requiredBackgroundModes": [
+    "audio"
+  ]
 }
