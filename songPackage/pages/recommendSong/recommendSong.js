@@ -6,7 +6,7 @@
  * @LastEditTime: 2021-09-09 17:32:07
  * @FilePath: \kaka_music\pages\recommendSong\recommendSong.js
  */
-import request from '../../utils/request';
+import request from '../../../utils/request';
 
 Page({
   /**
@@ -68,14 +68,20 @@ Page({
   toSongDetail(event) {
     let song = event.currentTarget.dataset.song;
     let index = event.currentTarget.dataset.index;
-    let { recommendList } = this.data;
+    let {
+      recommendList
+    } = this.data;
     console.log(song.id);
     // 路由跳转传参 query传参
     wx.navigateTo({
-      url: `/pages/songDetail/songDetail?songId=${song.id}`,
+      url: `/songPackage/pages/songDetail/songDetail?songId=${song.id}`,
       success: function (res) {
         // 通过eventChannel向被打开页面传送数据
-        res.eventChannel.emit('detail', { song, index, recommendList });
+        res.eventChannel.emit('detail', {
+          song,
+          index,
+          recommendList
+        });
       },
     });
   },

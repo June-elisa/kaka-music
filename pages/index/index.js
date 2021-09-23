@@ -70,7 +70,7 @@ Page({
   // 跳转至推荐歌曲列表页
   toRecommendSong() {
     wx.navigateTo({
-      url: '/pages/recommendSong/recommendSong',
+      url: '/songPackage/pages/recommendSong/recommendSong',
     });
   },
 

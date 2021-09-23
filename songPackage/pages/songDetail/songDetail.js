@@ -6,8 +6,8 @@
  * @LastEditTime: 2021-09-13 16:09:40
  * @FilePath: \kaka_music\pages\songDetail\songDetail.js
  */
-import request from '../../utils/request';
-import formatDate from '../../utils/formatDate';
+import request from '../../../utils/request';
+import formatDate from '../../../utils/formatDate';
 // 获取全局实例
 const appInstance = getApp();
 
@@ -61,16 +61,13 @@ Page({
 
     // 监听音乐播放/暂停/停止
     this.backgroundAudioManager.onPlay(() => {
-      console.log('onPlay');
       this.changePlayState(true);
       appInstance.globalData.musicId = this.data.song.id;
     });
     this.backgroundAudioManager.onPause(() => {
-      console.log('onPause');
       this.changePlayState(false);
     });
     this.backgroundAudioManager.onStop(() => {
-      console.log('触发onstop');
       this.changePlayState(false);
     });
     // 监听背景音频自然播放结束
@@ -80,7 +77,6 @@ Page({
       // 将实时进度条的长度还原成0
     });
     this.backgroundAudioManager.onWaiting(() => {
-      console.log('加载中');
     });
 
     // 监听音乐实时播放的进度
@@ -94,8 +90,11 @@ Page({
         ((this.backgroundAudioManager.currentTime * 1000) /
           this.data.song.hMusic.playTime) *
         100;
-      this.setData({ currentTime, currentRatio });
-      console.log('currentTime', currentTime);
+      this.setData({
+        currentTime,
+        currentRatio
+      });
+
       if (currentTime === 100) {
         console.log('播完了');
       }
@@ -121,7 +120,9 @@ Page({
       // 音乐播放
       if (!musicLink) {
         // 获取音乐播放链接
-        let musicLinkData = await request('/song/url', { id: musicId });
+        let musicLinkData = await request('/song/url', {
+          id: musicId
+        });
         musicLink = musicLinkData.data[0].url;
         console.log('请求到数据了');
       }
@@ -144,7 +145,10 @@ Page({
   },
   // 实现切歌
   switchMusic(type) {
-    let { index, recommendList } = this.data;
+    let {
+      index,
+      recommendList
+    } = this.data;
     let newIndex = 0;
     if (type === 'pre') {
       if (!index) {
