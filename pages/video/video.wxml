@@ -1,4 +1,5 @@
 <view class="videoContainer">
+<video src="http://vodkgeyttp9.vod.126.net/vodkgeyttp8/AHTeycz2_2967273035_shd.mp4?ts=1675934271&rid=2D7C0344C0ED873FC8E2A0F0F6E77A8C&rl=3&rs=UOJHFhfvpgVefpZcAIvjRdkAuXqJFhTp&sign=b37bf6ff8469b783d649540d77b321c4&ext=XNTwzQ0Eoc%2Ffoe7nfdRByf%2Fj0igmCv8A6tX1jPaQwJBUbvzfEBEDsJwfL%2BsE2p%2B31%2F83YsX%2FKf3P0eolSzfqNPQTWpcYwhaBGXlYp6UuKJwB5WFCQS2TdV8pB%2BfLBcedvAE6Mq0zeO2zzJTQWJTtNXYKiYJKQVROSU5%2FwMbZ5pq%2F0t3%2Fq%2FH9urSvM%2F5IEq8YD1ZRjATzPRAHupU3RF6p8mDmBbm8US%2FXgrmDs0EP4S4wZ1Dw2AfUWuiMKjnATR9%2B"/>
     <!-- 头部区域 -->
     <view class="header">
         <image src="/static/images/video/video.jpg" alt="" />
@@ -17,10 +18,11 @@
     <scroll-view scroll-y class="videoScroll" refresher-enabled bindrefresherrefresh="handleRefresher"
         refresher-triggered="{{isTriggered}}" bindscrolltolower="handleToLower">
         <view class="videoItem" wx:for="{{videoList}}" wx:key="index">
-            <video id="{{item.data.vid}}" src="{{item.data.urlInfo.url}}" bindplay="handlePlay"
-                poster="{{item.data.coverUrl}}" class="common" wx:if='{{videoId === item.data.vid}}' object-fit="cover"
+            <text>显示：{{!!item.data.vid}}{{!!item.data.urlInfo}}{{videoId === item.data.vid}} {{videoId === item.data.vid && item.data.urlInfo}}</text>
+             
+            <video id="{{item.data.vid}}"  src="{{item.data.urlInfo}}" bindplay="handlePlay"
+                poster="{{item.data.coverUrl}}" class="common" wx:if='{{videoId === item.data.vid && item.data.urlInfo}}' object-fit="cover"
                 bindtimeupdate="handleTimeUpdate" bindended="handleEnded" />
-            <!-- 性能优化：使用image图片代替 -->
             <image id="{{item.data.vid}}" src="{{item.data.coverUrl}}" class="common" bindtap="handlePlay" wx:else />
             <view class="videoTitle">{{item.data.title}}</view>
             <view class="footer">

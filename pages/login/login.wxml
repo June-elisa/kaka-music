@@ -1,18 +1,39 @@
 <view class="container">
-  <view class="wrapper">
+  <view class="wrapper" wx:if="{{loginType == 'phone'}}">
     <view class="left-top-sign">LOGIN</view>
-    <view class="welcome">欢迎回来！</view>
+
+    <view bindtap="toggleQRLogin" class="QR-code">
+      <text class="tip">扫码登录</text>
+      <text class="triangle"></text>
+      <text class="iconfont icon-erweima"></text>
+    </view>
+
+    <view class="welcome">账号登录</view>
     <view class="input-content">
       <view class="input-item">
         <input type="text" placeholder="请输入手机号" id="phone" bindinput="handleInput" />
       </view>
-      <view class="input-item">
-        <input type="password" placeholder="请输入密码" id="password" bindinput="handleInput" />
+      <view class="input-item input-code">
+        <input type="number" placeholder="请输入验证码" id="captcha" bindinput="handleInput" />
+        <!-- <text class="disabled">获取验证码</text> -->
+        <button disabled="{{!phone}}" size="mini" type="default" plain="true" bindtap="sendCode">获取验证码</button>
       </view>
     </view>
     <button class="confirm-btn" bindtap="login">登录</button>
     <view class="forget-section">忘记密码?</view>
   </view>
+  <view class="QR-section" wx:else>
+    <view wx:if="{{!isWaitConfirm}}">
+      <text>扫码登录</text>
+      <image src="{{qrimg}}" />
+    </view>
+    <view wx:else>
+      <image src="/static/images/icon/phone.png" mode="" />
+      <text>扫描成功</text>
+      <text>请在手机上确认登登录</text>
+    </view>
+  </view>
+
   <view class="register-section">
     还没有账号?
     <text>马上注册</text>

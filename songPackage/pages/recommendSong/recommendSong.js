@@ -50,7 +50,9 @@ Page({
 
   // 获取推荐列表数据
   async getRecommendList() {
-    let recommendListData = await request('/recommend/songs');
+    let recommendListData = await request('/recommend/songs',{
+      timerstamp:new Date().getTime()
+    });
     console.log(recommendListData);
     this.setData({
       recommendList: recommendListData.data.dailySongs,

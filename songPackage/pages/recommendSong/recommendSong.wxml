@@ -1,37 +1,36 @@
 <view class="recommendSongContainer">
-    <!-- 头部 -->
-    <view class="header">
-        <image src="/static/images/recommendSong/recommendSong.jpg" />
-        <view class="date">
-            <text class="month">{{month}} / </text>
-            <text class="day">{{day}}</text>
+  <!-- 头部 -->
+  <view class="header">
+    <image src="/static/images/recommendSong/recommendSong.jpg" />
+    <view class="date">
+      <text class="month">{{month}} / </text>
+      <text class="day">{{day}}</text>
 
-        </view>
+    </view>
+  </view>
+
+  <!-- 列表区域 -->
+  <view class="listContainer">
+    <view class="listHeader">
+      <text>播放全部</text>
+      <text class="changeMore">多选</text>
     </view>
 
-    <!-- 列表区域 -->
-    <view class="listContainer">
-        <view class="listHeader">
-            <text>播放全部</text>
-            <text class="changeMore">多选</text>
+    <!-- 内容区 -->
+    <scroll-view scroll-y class="listScroll">
+      <view class="scrollItem" wx:for="{{recommendList}}" wx:key="id" data-index='{{index}}' data-song='{{item}}' bindtap="toSongDetail">
+        <image src="{{item.al.picUrl}}" />
+        <view class="musicInfo">
+          <text class="musicName">{{item.name}}</text>
+          <text class="author">
+          <view>{{item.reason}}</view>
+            <text class="artist" wx:for="{{item.ar}}" wx:key="id" wx:for-item="author" wx:for-index="idx">
+              <text>{{author.name}}{{item.ar.length-1 === idx ? '':'/'}}</text>
+            </text> - {{item.al.name}}</text>
         </view>
+        <text class="iconfont icon-diandian"></text>
+      </view>
 
-        <!-- 内容区 -->
-        <scroll-view scroll-y class="listScroll">
-            <view class="scrollItem" wx:for="{{recommendList}}" wx:key="id" data-index='{{index}}' data-song='{{item}}'
-                bindtap="toSongDetail">
-                <image src="{{item.album.picUrl}}" />
-                <view class="musicInfo">
-                    <text class="musicName">{{item.name}}</text>
-                    <text class="author">
-                        <text class="artist" wx:for="{{item.artists}}" wx:key="id" wx:for-item="author"
-                            wx:for-index="idx">
-                            <text>{{author.name}}{{item.artists.length-1 === idx ? '':'/'}}</text>
-                        </text> - {{item.album.name}}</text>
-                </view>
-                <text class="iconfont icon-diandian"></text>
-            </view>
-
-        </scroll-view>
-    </view>
+    </scroll-view>
+  </view>
 </view>

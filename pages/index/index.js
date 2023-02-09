@@ -50,21 +50,27 @@ Page({
     // 3.如果先看到的是值  那么就先赋值再运算
     let index = 0;
     let resultArr = [];
-    while (index < 5) {
-      let topListData = await request('/top/list', {
-        idx: index++,
-      });
-      // splice(会修改原数组，可以对指定的数组进行增删改) slice(不会修改原数组)
-      let topListItem = {
-        name: topListData.playlist.name,
-        tracks: topListData.playlist.tracks.slice(0, 3),
-      };
-      resultArr.push(topListItem);
-      // 不需要等待五次请求全部结束才更新，用户体验较好，但是渲染次数会多一些
+    // while (index < 5) {
+    //   let topListData = await request('/top/list', {
+    //     idx: index++,
+    //   });
+    //   // splice(会修改原数组，可以对指定的数组进行增删改) slice(不会修改原数组)
+    //   let topListItem = {
+    //     name: topListData.playlist.name,
+    //     tracks: topListData.playlist.tracks.slice(0, 3),
+    //   };
+    //   resultArr.push(topListItem);
+    //   // 不需要等待五次请求全部结束才更新，用户体验较好，但是渲染次数会多一些
+    //   this.setData({
+    //     topList: resultArr,
+    //   });
+    // }
+      let topListData = await request('/toplist/detail');
+      resultArr = topListData.list.slice(0,4);
       this.setData({
-        topList: resultArr,
-      });
-    }
+        topList: resultArr
+      })
+
   },
 
   // 跳转至推荐歌曲列表页

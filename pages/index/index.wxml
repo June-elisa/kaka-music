@@ -46,17 +46,16 @@
     <!-- 头部区域 -->
     <NavHeader title="排行榜" nav="热歌风向标" />
     <!-- 内容区域 -->
-    <swiper class="topListSwiper" next-margin="50rpx" previous-margin="50rpx">
-      <swiper-item wx:for="{{topList}}" wx:key="name">
-        <view class="swiperItem">
-          <view class="title">{{item.name}}</view>
-          <view class="musicItem" wx:for="{{item.tracks}}" wx:key="id" wx:for-item="musicItem">
-            <image src="{{musicItem.al.picUrl}}" />
-            <text class="count">{{index + 1}}</text>
-            <text class="musicName">{{musicItem.name}}</text>
-          </view>
+      <view class="topItem" wx:for="{{topList}}" wx:key="name">
+        <view >
+          <image src="{{item.coverImgUrl}}" />
+        </view>  
+        <view class="musicItem">
+          <view  wx:for="{{item.tracks}}" wx:key="id" wx:for-item="musicItem">
+            <!-- <image src="{{musicItem.al.picUrl}}" /> -->
+            <text class="desc">{{index + 1}} {{musicItem.first}} - {{musicItem.second}}</text>
+          </view>          
         </view>
-      </swiper-item>
-    </swiper>
+      </view>
   </view>
 </view>

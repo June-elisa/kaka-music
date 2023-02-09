@@ -21,7 +21,12 @@ Page({
    */
   data: {
     phone: '', // 手机号
-    password: '', // 用户密码
+    captcha: '', // 用户密码
+    loginType: 'phone', // phone:手机号登录，QR:扫码登录
+    key: '', // QR key
+    isWaitConfirm: false, // 等待确认二维码
+    qrimg: '', // base64
+    timeInter: null,
   },
 
   /**
@@ -40,14 +45,29 @@ Page({
     })
   },
 
-  // 登录的回调
-  async login() {
-    // 1.收集表单项数据
+  // 发送验证码
+  async sendCode() {
     let {
-      phone,
-      password
+      phone
     } = this.data;
-    // 2.前端验证
+    console.log(phone);
+    if (!this.checkPhone(phone)) {
+      return;
+    }
+    let res = await request('/captcha/sent', {
+      phone
+    });
+    if (res.code == 200) {
+      wx.showToast({
+        title: '验证码已发送',
+        icon: 'success'
+      })
+    }
+
+  },
+
+  // 验证手机号码格式
+  checkPhone(phone) {
     /*
       手机号验证：
       1.内容为空
@@ -60,7 +80,7 @@ Page({
         title: '手机号不能为空',
         icon: 'none'
       })
-      return;
+      return false;
     }
 
     // 定义正则表达式
@@ -70,10 +90,24 @@ Page({
         title: '手机号格式不正确',
         icon: 'none'
       })
+      return false;
+    }
+    return true;
+  },
+
+  // 登录的回调
+  async login() {
+    // 1.收集表单项数据
+    let {
+      phone,
+      captcha
+    } = this.data;
+    // 2.前端验证
+    if (!this.checkPhone(phone)) {
       return;
     }
 
-    if (!password) {
+    if (!captcha) {
       wx.showToast({
         title: '密码不能为空',
         icon: 'none'
@@ -84,8 +118,7 @@ Page({
     // 3.后端验证
     let res = await request('/login/cellphone', {
       phone,
-      password,
-      isLogin: true
+      captcha
     })
 
     if (res.code === 200) {
@@ -119,6 +152,69 @@ Page({
 
   },
 
+  // 切换到扫码登录
+  async toggleQRLogin() {
+    this.setData({
+      loginType: 'QR'
+    })
+
+    // step1、生成二维码key
+    let res1 = await request('/login/qr/key', {
+      timerstamp: new Date().getTime()
+    });
+    let key = res1.data.unikey;
+    this.setData({
+      key
+    })
+
+    // step2、生成二维码
+    let res2 = await request('/login/qr/create', {
+      key,
+      qrimg: true,
+      timerstamp: new Date().getTime(),
+    });
+    this.setData({
+      qrimg: res2.data.qrimg
+    })
+
+    let testTimer = setInterval(() => {
+      console.log('1');
+    }, 100)
+
+    clearInterval(testTimer);
+
+
+    // step3、检测扫码状态
+    this.data.timeInter = setInterval(async () => {
+      let res3 = await request('/login/qr/check', {
+        key,
+        timerstamp: new Date().getTime(),
+        isLogin: true
+      });
+      if (res3.code == '802') {
+        console.log('扫码成功')
+        this.setData({
+          isWaitConfirm: true
+        })
+      } else if (res3.code == '803') {
+        clearInterval(this.data.timeInter);
+        this.getPersonalInfo()
+        // 跳转至个人中心personal页面
+        wx.reLaunch({
+          url: '/pages/personal/personal'
+        })
+
+      }
+    }, 2000)
+  },
+
+  // 存储用户信息
+  async getPersonalInfo() {
+    let res = await request('/user/account');
+    // 将用户信息存储至本地
+    wx.setStorageSync('userInfo', JSON.stringify(res.profile))
+  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -144,7 +240,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+    clearInterval(this.data.timeInter);
   },
 
   /**

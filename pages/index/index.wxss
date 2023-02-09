@@ -74,27 +74,27 @@
 /* 排行榜 */
 .topList {
   padding: 20rpx;
+  font-size: 26rpx;
 }
-
-.topListSwiper {
-  height: 420rpx;
-}
-
-.swiperItem {
+.topItem {
   width: 96%;
   background-color: #fbfbfb;
+  display: flex;
+  flex-direction: row;
 }
-
-.swiperItem .title {
-  font-size: 30rpx;
-  line-height: 80rpx;
+.topItem image {
+  width: 200rpx;
+  height: 200rpx;
+  border-radius: 10rpx;
 }
 
 .musicItem {
   /* 当一个元素设置为flex，其子元素会自动成为block元素 */
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  justify-content: space-around;
   margin-bottom: 20rpx;
+  height: 200rpx;
 }
 
 .musicItem image {
@@ -103,16 +103,11 @@
   border-radius: 6rpx;
 }
 
-.musicItem .count {
-  width: 100rpx;
-  height: 100rpx;
-  text-align: center;
-  line-height: 100rpx;
-}
-
-.musicItem .musicName {
+.musicItem .desc {
+  display: inline-block;
   max-width: 400rpx;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  margin-left: 25rpx;
 }

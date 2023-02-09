@@ -54,10 +54,21 @@ Page({
   async getVideoList(navId) {
     let videoListData = await request('/video/group', {
       id: navId,
+      timerstamp: new Date().getTime()
     });
     // 关闭消息提示框
     wx.hideLoading();
+    // 遍历得到video url
+    debugger;
+    videoListData.datas.map(async (item) => {
+      let res = await request('/video/url', {
+        id: item.data.vid
+      })
+      item.data.urlInfo = res.urls[0].url;
+      return item;
+    })
     // 关闭下拉刷新
+    debugger;
     this.setData({
       videoList: videoListData.datas,
       isTriggered: false,
@@ -97,7 +108,9 @@ Page({
     // 创建控制video标签的实例对象
     this.videoContext = wx.createVideoContext(vid);
     // 判断当前的视频是否有播放记录，如果有，跳转至指定的播放位置
-    let { videoUpdateTime } = this.data;
+    let {
+      videoUpdateTime
+    } = this.data;
     let videoItem = videoUpdateTime.find((item) => item.vid === vid);
     if (videoItem) {
       this.videoContext.seek(videoItem.currentTime);
@@ -113,7 +126,9 @@ Page({
       vid: event.currentTarget.id,
       currentTime: event.detail.currentTime,
     };
-    let { videoUpdateTime } = this.data;
+    let {
+      videoUpdateTime
+    } = this.data;
     // 判断记录播放时长的videoUpdateTime数组中是否有记录当前视频的播放记录
     let videoItem = videoUpdateTime.find(
       (item) => item.vid === videoTimeObj.vid
@@ -135,7 +150,9 @@ Page({
   handleEnded(event) {
     // console.log('播放结束');
     // 移除记录播放时长数组中当前视频的对象
-    let { videoUpdateTime } = this.data;
+    let {
+      videoUpdateTime
+    } = this.data;
 
     videoUpdateTime.splice(
       videoUpdateTime.findIndex((item) => item.vid === event.currentTarget.id),
@@ -144,6 +161,16 @@ Page({
     this.setData({
       videoUpdateTime,
     });
+  },
+
+  // 获取video点播放地址
+  async getVideoUrl(data) {
+    console.log('222')
+    let res = await request('/video/url', {
+      id: data.vid
+    })
+    return res.urls[0].url;
+
   },
 
   // 跳转至搜索页面
@@ -200,8 +227,13 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function ({ from, target }) {
-    let { videoList } = this.data;
+  onShareAppMessage: function ({
+    from,
+    target
+  }) {
+    let {
+      videoList
+    } = this.data;
     let shareVideo = videoList.find((item) => item.data.vid === target.id).data;
 
     if (from === 'button') {

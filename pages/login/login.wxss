@@ -94,3 +94,56 @@
   color: #4399fc;
   margin-left: 10rpx;
 }
+
+.input-code {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.input-code input {
+  width: max-content;
+}
+
+.input-content .input-code button {
+  font-size: 28rpx;
+  margin: 0;
+}
+
+.QR-code {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 160rpx;
+  height: 160rpx;
+}
+
+.icon-erweima{
+  font-size: 160rpx;
+  color: #d43c33;
+}
+
+.triangle{
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 0;
+  height: 0;
+  border-bottom: 160rpx solid #fff;
+  border-right: 160rpx solid transparent;
+}
+.tip{
+  position: absolute;
+  left: -55rpx;
+  top: 75rpx;
+  font-size: 28rpx;
+  color: #c14e47;
+  z-index: 1;
+}
+
+.QR-section>view{
+  display: flex;
+  flex-direction: column;
+  align-items: center;  
+}

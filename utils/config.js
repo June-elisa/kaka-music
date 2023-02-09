@@ -7,6 +7,6 @@
  * @FilePath: \kaka_music\utils\config.js
  */
 export default {
-  host: 'http://localhost:3000',
+  host: 'http://192.168.31.119:3000',
   mobileHost: 'https://7fe1-116-236-168-98.ngrok.io',
 };
